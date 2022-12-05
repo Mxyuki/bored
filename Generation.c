@@ -1,6 +1,6 @@
 // Author   : Mxyuki
 // Version  : 1.0
-// Conpil   : gcc -Wall Gene.c -o Gene
+// Compil   : gcc -Wall Gene.c -o Gene
 
 #include <stdio.h>
 #include <time.h>
