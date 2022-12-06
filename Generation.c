@@ -1,13 +1,13 @@
 // Author   : Mxyuki
-// Version  : 2.0
+// Version  : 2.1
 // Compil   : gcc -Wall Gene.c -o Gene
 
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 
-int taillex = 20;
-int tailley = 20;
+int taillex = 50;
+int tailley = 50;
 
 int lowPerc = 1;
 int highPerc = 99;
@@ -43,11 +43,11 @@ void GenTab(){
             if(posx == 0 && posy == 0){
                 if(r <= 33){ 
                     tab[posx][posy] = 1;
-                    printf("░░");
+                    printf("▓▓");
                 }
                 else if(r >= 66){
                     tab[posx][posy] = 3;
-                    printf("▓▓");
+                    printf("░░");
                 }
                 else{ 
                     tab[posx][posy] = 2;
@@ -61,7 +61,7 @@ void GenTab(){
                 if(tab[posx-1][posy] == 1){
                     if(r <= medPerc){
                         tab[posx][posy] = 1;
-                        printf("░░");
+                        printf("▓▓");
                     }
                     else{ 
                         tab[posx][posy] = 2;
@@ -72,11 +72,11 @@ void GenTab(){
                 else if(tab[posx-1][posy] == 2){
                     if(r <= lowPerc){ 
                         tab[posx][posy] = 1;
-                        printf("░░");
+                        printf("▓▓");
                     }
                     else if(r >= highPerc){ 
                         tab[posx][posy] = 3;
-                        printf("▓▓");
+                        printf("░░");
                     }
                     else{ 
                         tab[posx][posy] = 2;
@@ -87,7 +87,7 @@ void GenTab(){
                 if(tab[posx-1][posy] == 3){
                     if(r <= medPerc){
                         tab[posx][posy] = 3;
-                        printf("▓▓");
+                        printf("░░");
                     }
                     else{ 
                         tab[posx][posy] = 2;
@@ -114,11 +114,11 @@ void GenTab(){
                 else if(tab[posx][posy-1] == 2){
                     if(r <= lowPerc){ 
                         tab[posx][posy] = 1;
-                        printf("░░");
+                        printf("▓▓");
                     }
                     else if(r >= highPerc){ 
                         tab[posx][posy] = 3;
-                        printf("▓▓");
+                        printf("░░");
                     }
                     else{ 
                         tab[posx][posy] = 2;
@@ -129,7 +129,7 @@ void GenTab(){
                 if(tab[posx][posy-1] == 3){
                     if(r <= medPerc){
                         tab[posx][posy] = 3;
-                        printf("▓▓");
+                        printf("░░");
                     }
                     else{ 
                         tab[posx][posy] = 2;
@@ -145,7 +145,7 @@ void GenTab(){
                 if(tab[posx-1][posy] == 1 && tab[posx][posy-1] == 1){
                     if(r <= medPerc){
                         tab[posx][posy] = 1;
-                        printf("░░");
+                        printf("▓▓");
                     }
                     else{ 
                         tab[posx][posy] = 2;
@@ -156,11 +156,11 @@ void GenTab(){
                 else if(tab[posx-1][posy] == 2 && tab[posx][posy-1] == 2){
                     if(r <= lowPerc){
                         tab[posx][posy] = 1;
-                        printf("░░");
+                        printf("▓▓");
                     }
                     else if(r >= highPerc){
                         tab[posx][posy] = 3;
-                        printf("▓▓");
+                        printf("░░");
                     }
                     else{ 
                         tab[posx][posy] = 2;
@@ -171,7 +171,7 @@ void GenTab(){
                 else if(tab[posx-1][posy] == 3 && tab[posx][posy-1] == 3){
                     if(r <= medPerc){
                         tab[posx][posy] = 3;
-                        printf("▓▓");
+                        printf("░░");
                     }
                     else{ 
                         tab[posx][posy] = 2;
@@ -184,7 +184,7 @@ void GenTab(){
                 else if(tab[posx-1][posy] == 1 && tab[posx][posy-1] == 2){
                     if(r <= 50){
                         tab[posx][posy] = 1;
-                        printf("░░");
+                        printf("▓▓");
                     }
                     else{ 
                         tab[posx][posy] = 2;
@@ -199,7 +199,7 @@ void GenTab(){
                     }
                     else{ 
                         tab[posx][posy] = 3;
-                        printf("▓▓");
+                        printf("░░");
                     } 
                 }
 
@@ -213,7 +213,7 @@ void GenTab(){
                 else if(tab[posx][posy-1] == 1 && tab[posx-1][posy] == 2){
                     if(r <= 50){
                         tab[posx][posy] = 1;
-                        printf("░░");
+                        printf("▓▓");
                     }
                     else{ 
                         tab[posx][posy] = 2;
@@ -228,7 +228,7 @@ void GenTab(){
                     }
                     else{ 
                         tab[posx][posy] = 3;
-                        printf("▓▓");
+                        printf("░░");
                     } 
                 }
 
@@ -280,7 +280,7 @@ void cursor(int tab[][tailley]){
                 while(posx < taillex){
             
                     if(posx == curX && posy == curY){ 
-                        printf("[]");
+                        printf("██");
                         posx++;
                     }
 
@@ -308,12 +308,79 @@ void cursor(int tab[][tailley]){
             if(tab[curY][curX] != 3 && inv > 0){ 
                 tab[curY][curX] = tab[curY][curX] + 1;
                 inv = inv - 1;
+                
+                system("@cls||clear");
+
+                system("/bin/stty cooked");
+
+                printf("\n");
+
+                while(posy < tailley){
+
+                    while(posx < taillex){
+            
+                        if(posx == curX && posy == curY){ 
+                            printf("██");
+                            posx++;
+                        }
+
+                        else{
+
+                            if(tab[posy][posx] == 1) printf("▓▓");
+                            else if(tab[posy][posx] == 2) printf("▒▒");
+                            else if(tab[posy][posx] == 3) printf("░░");
+
+                            posx++;
+                        }
+                    }
+                    printf("\n");
+                    posx = 0;
+                    posy++;
+                }
+                printf("Inventory : %d\n", inv);
+                posx = 0;
+                posy = 0;
+                system ("/bin/stty raw");       
             }
         }
         else if(c == '7'){
             if(tab[curY][curX] != 1){ 
                 tab[curY][curX] = tab[curY][curX] - 1;
                 inv = inv + 1;
+                
+                system("@cls||clear");
+
+                system("/bin/stty cooked");
+
+                printf("\n");
+
+                while(posy < tailley){
+
+                    while(posx < taillex){
+            
+                        if(posx == curX && posy == curY){ 
+                            printf("██");
+                            posx++;
+                        }
+
+                        else{
+
+                            if(tab[posy][posx] == 1) printf("▓▓");
+                            else if(tab[posy][posx] == 2) printf("▒▒");
+                            else if(tab[posy][posx] == 3) printf("░░");
+
+                            posx++;
+                        }
+                    }
+                    printf("\n");
+                    posx = 0;
+                    posy++;
+                }
+                printf("Inventory : %d\n", inv);
+                posx = 0;
+                posy = 0;
+                system ("/bin/stty raw");
+
             }
         }
     }
