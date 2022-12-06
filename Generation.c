@@ -1,13 +1,13 @@
 // Author   : Mxyuki
-// Version  : 2.1
+// Version  : 2.2
 // Compil   : gcc -Wall Gene.c -o Gene
 
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 
-int taillex = 50;
-int tailley = 50;
+int taillex = 10;
+int tailley = 10;
 
 int lowPerc = 1;
 int highPerc = 99;
@@ -257,10 +257,41 @@ void cursor(int tab[][tailley]){
     system ("/bin/stty raw");
     while((c=getchar())!= 27) {
        
+        /*
         if(c == '8') curY--;
         if(c == '4') curX--;
         if(c == '6') curX++;
         if(c == '5') curY++; 
+        */
+
+        if(c == '8'){
+            if(tab[curY][curX] == 2) curY--;
+            else if(tab[curY][curX] == 1 && tab[curY-1][curX] == 2)curY--;
+            else if(tab[curY][curX] == 3 && tab[curY-1][curX] == 2)curY--;
+            else if(tab[curY][curX] == 1 && tab[curY-1][curX] == 1)curY--;
+            else if(tab[curY][curX] == 3 && tab[curY-1][curX] == 3)curY--;
+        }
+        if(c == '4'){
+            if(tab[curY][curX] == 2) curX--;
+            else if(tab[curY][curX] == 1 && tab[curY][curX-1] == 2)curX--;
+            else if(tab[curY][curX] == 3 && tab[curY][curX-1] == 2)curX--;
+            else if(tab[curY][curX] == 1 && tab[curY][curX-1] == 1)curX--;
+            else if(tab[curY][curX] == 3 && tab[curY][curX-1] == 3)curX--;
+        }
+        if(c == '6'){
+            if(tab[curY][curX] == 2) curX++;
+            else if(tab[curY][curX] == 1 && tab[curY][curX+1] == 2)curX++;
+            else if(tab[curY][curX] == 3 && tab[curY][curX+1] == 2)curX++;
+            else if(tab[curY][curX] == 1 && tab[curY][curX+1] == 1)curX++;
+            else if(tab[curY][curX] == 3 && tab[curY][curX+1] == 3)curX++;
+        }
+        if(c == '5'){
+            if(tab[curY][curX] == 2) curY++;
+            else if(tab[curY][curX] == 1 && tab[curY+1][curX] == 2)curY++;
+            else if(tab[curY][curX] == 3 && tab[curY+1][curX] == 2)curY++;
+            else if(tab[curY][curX] == 1 && tab[curY+1][curX] == 1)curY++;
+            else if(tab[curY][curX] == 3 && tab[curY+1][curX] == 3)curY++;
+        }
 
         if(curX < 0) curX++;
         if(curX == taillex) curX--;
@@ -297,7 +328,8 @@ void cursor(int tab[][tailley]){
                 posx = 0;
                 posy++;
             }
-            printf("Inventory : %d\n", inv);
+            printf("Inventory : %d, Height : %d\n", inv, tab[curY][curX]);
+            printf("X : %d, Y : %d\n", curX, curY);
             posx = 0;
             posy = 0;
             system ("/bin/stty raw"); 
@@ -337,7 +369,8 @@ void cursor(int tab[][tailley]){
                     posx = 0;
                     posy++;
                 }
-                printf("Inventory : %d\n", inv);
+                printf("Inventory : %d, Height : %d\n", inv, tab[curY][curX]);
+                printf("X : %d, Y : %d\n", curX, curY);
                 posx = 0;
                 posy = 0;
                 system ("/bin/stty raw");       
@@ -376,7 +409,8 @@ void cursor(int tab[][tailley]){
                     posx = 0;
                     posy++;
                 }
-                printf("Inventory : %d\n", inv);
+                printf("Inventory : %d, Height : %d\n", inv, tab[curY][curX]);
+                printf("X : %d, Y : %d\n", curX, curY);
                 posx = 0;
                 posy = 0;
                 system ("/bin/stty raw");
